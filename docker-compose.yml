@@ -3,24 +3,29 @@ services:
     build:
       context: docker/wordpress
       args:
-        WORDPRESS_IMAGE: $WORDPRESS_IMAGE
+        WORDPRESS_VERSION: $WORDPRESS_VERSION
+        PHP_VERSION: $PHP_VERSION
     container_name: "${DOCKER_PROJECT_NAME}-wp"
     depends_on:
       - db
-    restart: always
+    restart: no
     environment:
       WORDPRESS_DB_HOST: db
       WORDPRESS_DB_USER: test
       WORDPRESS_DB_PASSWORD: test
       WORDPRESS_DB_NAME: test
       WP_CLI_ALLOW_ROOT: 1
+      TEST_SITE_URL: ${TEST_SITE_URL}
+      TEST_SITE_TITLE: ${TEST_SITE_TITLE}
+      TEST_SITE_ADMIN_USER: ${TEST_SITE_ADMIN_USER}
+      TEST_SITE_ADMIN_EMAIL: ${TEST_SITE_ADMIN_EMAIL}
     volumes:
       - ./data/wordpress:/var/www/html
 
   db:
     image: mysql:8.0
     container_name: "${DOCKER_PROJECT_NAME}-db"
-    restart: always
+    restart: no
     environment:
       MYSQL_DATABASE: test
       MYSQL_USER: test
