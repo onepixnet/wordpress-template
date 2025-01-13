@@ -1,0 +1,29 @@
+services:
+  wordpress:
+    build:
+      context: docker/php
+      args:
+        WORDPRESS_IMAGE: $WORDPRESS_IMAGE
+    container_name: "${DOCKER_PROJECT_NAME}-wp"
+    depends_on:
+      - db
+    restart: always
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_USER: test
+      WORDPRESS_DB_PASSWORD: test
+      WORDPRESS_DB_NAME: test
+    volumes:
+      - ./data/wordpress:/var/www/html
+
+  db:
+    image: mysql:8.0
+    container_name: "${DOCKER_PROJECT_NAME}-db"
+    restart: always
+    environment:
+      MYSQL_DATABASE: test
+      MYSQL_USER: test
+      MYSQL_PASSWORD: test
+      MYSQL_RANDOM_ROOT_PASSWORD: '1'
+    volumes:
+      - ./data/db:/var/lib/mysql
