@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 set -Eeuo pipefail
 
 if ! wp core is-installed; then
