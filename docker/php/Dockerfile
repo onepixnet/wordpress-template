@@ -11,7 +11,7 @@ RUN set -eux && \
     rm -rf /var/lib/apt/lists/* && \
     mkdir /root/history && \
     chmod +x /usr/local/bin/install-php-extensions && \
-    install-php-extensions @composer exif gd mysqli zip && \
+    install-php-extensions @composer exif gd mysqli zip opcache && \
     ln -s composer /usr/local/bin/c && \
     curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar && \
     chmod +x wp-cli.phar && \
