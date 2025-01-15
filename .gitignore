@@ -4,4 +4,5 @@ data
 vendor
 var
 
-composer.lock #Uncomment in a project
+#Uncomment in a project
+composer.lock
