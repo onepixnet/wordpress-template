@@ -14,7 +14,7 @@ download() {
 }
 
 WORDPRESS_DIR="/var/www/html/data/wordpress"
-WORDPRESS_TESS_DIR="/var/www/html/data/wordpress-tests-lib"
+WORDPRESS_TEST_DIR="/var/www/html/data/wordpress-tests-lib"
 
 mkdir -p "$WORDPRESS_DIR"
 cd "$WORDPRESS_DIR" || handle_error "Failed to change directory to $WORDPRESS_DIR"
@@ -82,28 +82,28 @@ else
 fi
 
 # Set up testing suite
-if [ ! -d $WORDPRESS_TESS_DIR ]; then
+if [ ! -d $WORDPRESS_TEST_DIR ]; then
     echo "Setting up the testing suite... Preparing for takeoff! 🚀"
-    mkdir -p $WORDPRESS_TESS_DIR
-    rm -rf $WORDPRESS_TESS_DIR/{includes,data}
-    svn export --quiet --ignore-externals https://develop.svn.wordpress.org/${WP_TESTS_TAG}/tests/phpunit/includes/ $WORDPRESS_TESS_DIR/includes || handle_error "Failed to export test includes"
-    svn export --quiet --ignore-externals https://develop.svn.wordpress.org/${WP_TESTS_TAG}/tests/phpunit/data/ $WORDPRESS_TESS_DIR/data || handle_error "Failed to export test data"
+    mkdir -p $WORDPRESS_TEST_DIR
+    rm -rf $WORDPRESS_TEST_DIR/{includes,data}
+    svn export --quiet --ignore-externals https://develop.svn.wordpress.org/${WP_TESTS_TAG}/tests/phpunit/includes/ $WORDPRESS_TEST_DIR/includes || handle_error "Failed to export test includes"
+    svn export --quiet --ignore-externals https://develop.svn.wordpress.org/${WP_TESTS_TAG}/tests/phpunit/data/ $WORDPRESS_TEST_DIR/data || handle_error "Failed to export test data"
     echo "Testing suite setup complete. Ready to rumble! 🥊"
 else
     echo "Testing suite already exists. Ain't nobody got time for duplicates! 🤷"
 fi
 
 # Configure wp-tests-config.php
-if [ ! -f "$WORDPRESS_TESS_DIR/wp-tests-config.php" ]; then
+if [ ! -f "$WORDPRESS_TEST_DIR/wp-tests-config.php" ]; then
     echo "Downloading wp-tests-config-sample.php... Almost there! 🛠️"
-    download https://develop.svn.wordpress.org/${WP_TESTS_TAG}/wp-tests-config-sample.php "$WORDPRESS_TESS_DIR/wp-tests-config.php" || handle_error "Failed to download wp-tests-config-sample.php"
+    download https://develop.svn.wordpress.org/${WP_TESTS_TAG}/wp-tests-config-sample.php "$WORDPRESS_TEST_DIR/wp-tests-config.php" || handle_error "Failed to download wp-tests-config-sample.php"
     WORDPRESS_DIR=$(echo $WORDPRESS_DIR | sed "s:/\+$::")
-    sed -i "s#dirname( __FILE__ ) . '/src/'#'$WORDPRESS_DIR/'#" "$WORDPRESS_TESS_DIR/wp-tests-config.php"
-    sed -i "s#__DIR__ . '/src/'#'$WORDPRESS_DIR/'#" "$WORDPRESS_TESS_DIR/wp-tests-config.php"
-    sed -i "s/youremptytestdbnamehere/$WORDPRESS_DB_NAME/" "$WORDPRESS_TESS_DIR/wp-tests-config.php"
-    sed -i "s/yourusernamehere/$WORDPRESS_DB_USER/" "$WORDPRESS_TESS_DIR/wp-tests-config.php"
-    sed -i "s/yourpasswordhere/$WORDPRESS_DB_PASSWORD/" "$WORDPRESS_TESS_DIR/wp-tests-config.php"
-    sed -i "s|localhost|${WORDPRESS_DB_HOST}|" "$WORDPRESS_TESS_DIR/wp-tests-config.php"
+    sed -i "s#dirname( __FILE__ ) . '/src/'#'$WORDPRESS_DIR/'#" "$WORDPRESS_TEST_DIR/wp-tests-config.php"
+    sed -i "s#__DIR__ . '/src/'#'$WORDPRESS_DIR/'#" "$WORDPRESS_TEST_DIR/wp-tests-config.php"
+    sed -i "s/youremptytestdbnamehere/$WORDPRESS_DB_NAME/" "$WORDPRESS_TEST_DIR/wp-tests-config.php"
+    sed -i "s/yourusernamehere/$WORDPRESS_DB_USER/" "$WORDPRESS_TEST_DIR/wp-tests-config.php"
+    sed -i "s/yourpasswordhere/$WORDPRESS_DB_PASSWORD/" "$WORDPRESS_TEST_DIR/wp-tests-config.php"
+    sed -i "s|localhost|${WORDPRESS_DB_HOST}|" "$WORDPRESS_TEST_DIR/wp-tests-config.php"
     echo "wp-tests-config.php is ready to roll! 🎯"
 else
     echo "wp-tests-config.php already exists. Nothing to change here, folks. ✋"
