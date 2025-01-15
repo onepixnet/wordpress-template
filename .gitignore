@@ -3,3 +3,5 @@
 data
 vendor
 var
+
+composer.lock #Uncomment in a project
