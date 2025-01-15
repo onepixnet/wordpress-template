@@ -13,8 +13,8 @@ class ExamplePostCreator {
 	public function create( string $title, string $content ): int {
 		$result = wp_insert_post(
 			[
-				'post_title'   => 'title',
-				'post_content' => 'content',
+				'post_title'   => $title,
+				'post_content' => $content,
 				'post_status'  => 'publish',
 			],
 			true
