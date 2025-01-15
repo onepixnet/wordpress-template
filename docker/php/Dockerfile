@@ -23,4 +23,4 @@ WORKDIR /var/www/html
 ENV WORDPRESS_DIR=/var/www/html/data/wordpress
 ENV WORDPRESS_TEST_DIR=/var/www/html/data/wordpress-tests-lib
 
-CMD ["/bin/bash", "-c", "docker/php/install.sh && php-fpm"]
+CMD ["/bin/bash", "-c", "bash docker/php/install.sh && php-fpm"]
