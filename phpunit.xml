@@ -2,11 +2,11 @@
 <!--
  ToDo add
  requireCoverageMetadata="true"
- custom bootstrap file
  -->
 <phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:noNamespaceSchemaLocation="vendor/phpunit/phpunit/phpunit.xsd"
-         cacheDirectory="var/phpunit"
+         bootstrap="tests/bootstrap.php"
+         cacheResultFile="var/phpunit/cache.result"
          beStrictAboutOutputDuringTests="true"
          failOnRisky="true"
          failOnWarning="true"
