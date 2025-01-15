@@ -25,7 +25,9 @@
     "squizlabs/php_codesniffer": "^3.11",
     "dealerdirect/phpcodesniffer-composer-installer": "^1.0",
     "wp-coding-standards/wpcs": "^3.1",
-    "rector/rector": "^2.0"
+    "rector/rector": "^2.0",
+    "vimeo/psalm": "^5",
+    "humanmade/psalm-plugin-wordpress": "^3.1"
   },
   "config": {
     "allow-plugins": {
@@ -37,6 +39,8 @@
     "phpcs:full": "bash ./bin/phpcs.sh -full",
     "phpcs:fix": "bash ./bin/phpcs.sh -fix",
     "rector:dry": "vendor/bin/rector --dry-run",
-    "rector:fix": "vendor/bin/rector"
+    "rector:fix": "vendor/bin/rector",
+    "psalm": "./vendor/bin/psalm",
+    "psalm:full": "./vendor/bin/psalm --show-info=true"
   }
 }
