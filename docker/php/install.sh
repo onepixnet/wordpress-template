@@ -13,8 +13,7 @@ download() {
     fi
 }
 
-WORDPRESS_DIR="/var/www/html/data/wordpress"
-WORDPRESS_TEST_DIR="/var/www/html/data/wordpress-tests-lib"
+
 
 mkdir -p "$WORDPRESS_DIR"
 cd "$WORDPRESS_DIR" || handle_error "Failed to change directory to $WORDPRESS_DIR"
@@ -83,7 +82,7 @@ fi
 
 # Set up testing suite
 if [ ! -d $WORDPRESS_TEST_DIR ]; then
-    echo "Setting up the testing suite... Preparing for takeoff! 🚀"
+    echo "Setting up the testing suite $WP_TESTS_TAG. Preparing for takeoff! 🚀"
     mkdir -p $WORDPRESS_TEST_DIR
     rm -rf $WORDPRESS_TEST_DIR/{includes,data}
     svn export --quiet --ignore-externals https://develop.svn.wordpress.org/${WP_TESTS_TAG}/tests/phpunit/includes/ $WORDPRESS_TEST_DIR/includes || handle_error "Failed to export test includes"
