@@ -10,7 +10,7 @@
   },
   "autoload-dev": {
     "psr-4": {
-      "Docker\\WP\\": "tests/tests"
+      "Docker\\WP\\": "tests"
     }
   },
   "authors": [
