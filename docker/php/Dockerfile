@@ -6,7 +6,7 @@ ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/do
 
 RUN set -eux && \
     apk update && \
-    apk add git && \
+    apk add git subversion bash && \
     apk del && \
     rm -rf /var/lib/apt/lists/* && \
     mkdir /root/history && \
@@ -20,6 +20,4 @@ RUN set -eux && \
 VOLUME /var/www/html
 WORKDIR /var/www/html
 
-#CMD ["echo", "\$PWD"]
-
-CMD ["/bin/sh", "-c", "sh docker/php/install.sh && php-fpm"]
+CMD ["/bin/bash", "-c", "docker/php/install.sh && php-fpm"]

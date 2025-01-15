@@ -5,7 +5,16 @@ handle_error() {
     exit 1
 }
 
+download() {
+    if [ `which curl` ]; then
+        curl -s "$1" > "$2";
+    elif [ `which wget` ]; then
+        wget -nv -O "$2" "$1"
+    fi
+}
+
 WORDPRESS_DIR="/var/www/html/data/wordpress"
+WORDPRESS_TESS_DIR="/var/www/html/data/wordpress-tests-lib"
 
 mkdir -p "$WORDPRESS_DIR"
 cd "$WORDPRESS_DIR" || handle_error "Failed to change directory to $WORDPRESS_DIR"
@@ -31,6 +40,7 @@ if [ ! -f "wp-config.php" ]; then
     echo "wp-config.php created successfully. It's alive! ⚡"
 else
     echo "wp-config.php already exists. Nothing to see here, move along. 🚶‍♂️"
+    sleep 5s #The db does not have enough time to start
 fi
 
 # Check if WordPress is already installed
@@ -46,4 +56,55 @@ if ! wp core is-installed; then
     echo "WordPress installation complete. Let's get this party started! 🎉"
 else
     echo "WordPress is already installed. No need to fix what's not broken! 💪"
+fi
+
+# Determine the WordPress tests tag
+if [[ $WORDPRESS_VERSION =~ ^[0-9]+\.[0-9]+\-(beta|RC)[0-9]+$ ]]; then
+    WP_BRANCH=${WORDPRESS_VERSION%\-*}
+    WP_TESTS_TAG="branches/$WP_BRANCH"
+elif [[ $WORDPRESS_VERSION =~ ^[0-9]+\.[0-9]+$ ]]; then
+    WP_TESTS_TAG="branches/$WORDPRESS_VERSION"
+elif [[ $WORDPRESS_VERSION =~ [0-9]+\.[0-9]+\.[0-9]+ ]]; then
+    if [[ $WORDPRESS_VERSION =~ [0-9]+\.[0-9]+\.[0] ]]; then
+        WP_TESTS_TAG="tags/${WORDPRESS_VERSION%??}"
+    else
+        WP_TESTS_TAG="tags/$WORDPRESS_VERSION"
+    fi
+elif [[ $WORDPRESS_VERSION == 'nightly' || $WORDPRESS_VERSION == 'trunk' ]]; then
+    WP_TESTS_TAG="trunk"
+else
+    echo "Fetching the latest WordPress version... 🔍"
+    download http://api.wordpress.org/core/version-check/1.7/ /tmp/wp-latest.json || handle_error "Failed to fetch latest version info"
+    LATEST_VERSION=$(grep -o '"version":"[^"]*' /tmp/wp-latest.json | sed 's/"version":"//')
+    [ -z "$LATEST_VERSION" ] && handle_error "Latest WordPress version could not be determined"
+    WP_TESTS_TAG="tags/$LATEST_VERSION"
+    echo "Latest WordPress version is $LATEST_VERSION. 🚀"
+fi
+
+# Set up testing suite
+if [ ! -d $WORDPRESS_TESS_DIR ]; then
+    echo "Setting up the testing suite... Preparing for takeoff! 🚀"
+    mkdir -p $WORDPRESS_TESS_DIR
+    rm -rf $WORDPRESS_TESS_DIR/{includes,data}
+    svn export --quiet --ignore-externals https://develop.svn.wordpress.org/${WP_TESTS_TAG}/tests/phpunit/includes/ $WORDPRESS_TESS_DIR/includes || handle_error "Failed to export test includes"
+    svn export --quiet --ignore-externals https://develop.svn.wordpress.org/${WP_TESTS_TAG}/tests/phpunit/data/ $WORDPRESS_TESS_DIR/data || handle_error "Failed to export test data"
+    echo "Testing suite setup complete. Ready to rumble! 🥊"
+else
+    echo "Testing suite already exists. Ain't nobody got time for duplicates! 🤷"
+fi
+
+# Configure wp-tests-config.php
+if [ ! -f "$WORDPRESS_TESS_DIR/wp-tests-config.php" ]; then
+    echo "Downloading wp-tests-config-sample.php... Almost there! 🛠️"
+    download https://develop.svn.wordpress.org/${WP_TESTS_TAG}/wp-tests-config-sample.php "$WORDPRESS_TESS_DIR/wp-tests-config.php" || handle_error "Failed to download wp-tests-config-sample.php"
+    WORDPRESS_DIR=$(echo $WORDPRESS_DIR | sed "s:/\+$::")
+    sed -i "s#dirname( __FILE__ ) . '/src/'#'$WORDPRESS_DIR/'#" "$WORDPRESS_TESS_DIR/wp-tests-config.php"
+    sed -i "s#__DIR__ . '/src/'#'$WORDPRESS_DIR/'#" "$WORDPRESS_TESS_DIR/wp-tests-config.php"
+    sed -i "s/youremptytestdbnamehere/$WORDPRESS_DB_NAME/" "$WORDPRESS_TESS_DIR/wp-tests-config.php"
+    sed -i "s/yourusernamehere/$WORDPRESS_DB_USER/" "$WORDPRESS_TESS_DIR/wp-tests-config.php"
+    sed -i "s/yourpasswordhere/$WORDPRESS_DB_PASSWORD/" "$WORDPRESS_TESS_DIR/wp-tests-config.php"
+    sed -i "s|localhost|${WORDPRESS_DB_HOST}|" "$WORDPRESS_TESS_DIR/wp-tests-config.php"
+    echo "wp-tests-config.php is ready to roll! 🎯"
+else
+    echo "wp-tests-config.php already exists. Nothing to change here, folks. ✋"
 fi
