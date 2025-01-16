@@ -1,6 +1,6 @@
-# Docker WordPress
+# WP Template
 
-The goal of this project is to create a single template for convenient WordPress development. Combine all modern tools and allow us to develop WordPress projects with pleasure
+The goal of this project is to create a single base for convenient WordPress development. Combine all modern tools and allow us to develop WordPress projects with pleasure
 
 ## Useful resources
 
