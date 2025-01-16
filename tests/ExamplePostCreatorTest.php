@@ -4,12 +4,12 @@ declare( strict_types=1 );
 
 namespace Onepix\Wordpress;
 
-use PHPUnit\Framework\TestCase;
+use WP_UnitTestCase;
 
 /**
  * @covers \Onepix\Wordpress\ExamplePostCreator
  */
-final class ExamplePostCreatorTest extends TestCase {
+final class ExamplePostCreatorTest extends WP_UnitTestCase {
 	public function test_create(): void {
 		$creator      = new ExamplePostCreator();
 		$posts_amount = 3;
