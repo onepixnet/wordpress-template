@@ -1,11 +1,11 @@
 {
-  "name": "ddaniel/docker-wp",
-  "description": "Pack of features for WordPress development in Docker",
-  "type": "template",
+  "name": "onepix/wordpress-template",
+  "description": "Pack of features for WordPress development",
+  "type": "library",
   "license": "MIT",
   "autoload": {
     "psr-4": {
-      "Docker\\WP\\": "src/"
+      "Onepix\\Wordpress\\": "src/"
     }
   },
   "autoload-dev": {

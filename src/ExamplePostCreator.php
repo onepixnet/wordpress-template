@@ -2,7 +2,7 @@
 
 declare( strict_types=1 );
 
-namespace Docker\WP;
+namespace Onepix\Wordpress;
 
 use Exception;
 

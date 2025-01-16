@@ -2,12 +2,12 @@
 
 declare( strict_types=1 );
 
-namespace Docker\WP;
+namespace Onepix\Wordpress;
 
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \Docker\WP\ExamplePostCreator
+ * @covers \Onepix\Wordpress\ExamplePostCreator
  */
 final class ExamplePostCreatorTest extends TestCase {
 	public function test_create(): void {
