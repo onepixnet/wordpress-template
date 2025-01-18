@@ -48,7 +48,28 @@
         <exclude name="WordPress.Security.ValidatedSanitizedInput.MissingUnslash"/>
         <exclude name="WordPress.Security.ValidatedSanitizedInput.InputNotValidated"/>
         <exclude name="WordPress.Security.ValidatedSanitizedInput.InputNotSanitized"/>
+
+        <!--   Disable WordPress rules that don't comply with PSR-12     -->
+        <exclude name="Generic.Functions"/>
+        <exclude name="Squiz.Functions"/>
+
+        <exclude name="Generic.WhiteSpace"/>
+        <exclude name="Universal.WhiteSpace"/>
+        <exclude name="WordPress.WhiteSpace"/>
+
+        <exclude name="Generic.Classes"/>
+        <exclude name="Universal.Classes"/>
+
+        <exclude name="WordPress.Arrays"/>
+        <exclude name="NormalizedArrays"/>
+
+        <exclude name="WordPress.NamingConventions"/>
+        <exclude name="PEAR"/>
     </rule>
 
-    <rule ref="Generic.Arrays.DisallowLongArraySyntax"/> <!-- Disallow long array syntax -->
+    <rule ref="Generic.Arrays.DisallowLongArraySyntax"/>
+
+    <rule ref="PSR12"/>
+
+    <rule ref="Squiz.NamingConventions.ValidVariableName"/>
 </ruleset>
