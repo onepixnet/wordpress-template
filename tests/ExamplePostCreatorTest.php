@@ -2,12 +2,12 @@
 
 declare( strict_types=1 );
 
-namespace Onepix\Wordpress;
+namespace OnePix\WordPress;
 
 use WP_UnitTestCase;
 
 /**
- * @covers \Onepix\Wordpress\ExamplePostCreator
+ * @covers \OnePix\WordPress\ExamplePostCreator
  */
 final class ExamplePostCreatorTest extends WP_UnitTestCase {
 	public function test_create(): void {

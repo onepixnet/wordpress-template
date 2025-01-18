@@ -2,7 +2,7 @@
 
 declare( strict_types=1 );
 
-namespace Onepix\Wordpress;
+namespace OnePix\WordPress;
 
 use Exception;
 

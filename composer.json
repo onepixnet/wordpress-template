@@ -5,12 +5,12 @@
   "license": "MIT",
   "autoload": {
     "psr-4": {
-      "Onepix\\Wordpress\\": "src/"
+      "OnePix\\WordPress\\": "src/"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "Onepix\\Wordpress\\": "tests"
+      "OnePix\\WordPress\\": "tests"
     }
   },
   "authors": [
