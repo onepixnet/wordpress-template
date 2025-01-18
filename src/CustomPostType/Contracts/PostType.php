@@ -1,21 +1,22 @@
 <?php
 
-declare( strict_types=1 );
+declare(strict_types=1);
 
 namespace OnePix\WordPress\CustomPostType\Contracts;
 
-interface PostType {
-	/**
-	 * Method made static for potential lazy loading.
-	 *
-	 * @return class-string<PostTypeRegistrar>
-	 */
-	public static function registrar():string;
+interface PostType
+{
+    /**
+     * Method made static for potential lazy loading.
+     *
+     * @return class-string<PostTypeRegistrar>
+     */
+    public static function registrar(): string;
 
-	/**
-	 * @return non-empty-string
-	 */
-	public function getType(): string;
+    /**
+     * @return non-empty-string
+     */
+    public function getType(): string;
 
-	public function getSettings(): array;
+    public function getSettings(): array;
 }

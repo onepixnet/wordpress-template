@@ -1,6 +1,6 @@
 <?php
 
-declare( strict_types=1 );
+declare(strict_types=1);
 
 namespace OnePix\WordPress\CustomPostType;
 
@@ -12,28 +12,40 @@ use WP_UnitTestCase;
 /**
  * @covers DefaultPostTypesRegistrar
  */
-class DefaultPostTypesRegistrarTest extends WP_UnitTestCase {
-    public function testRegister(): void {
+class DefaultPostTypesRegistrarTest extends WP_UnitTestCase
+{
+    public function testRegister(): void
+    {
         $postType1 = new class implements PostType {
-            public static function registrar(): string {
+            public static function registrar(): string
+            {
                 return 'PostTypeRegistrarClass1';
             }
-            public function getType(): string {
+
+            public function getType(): string
+            {
                 return 'type1';
             }
-            public function getSettings(): array {
+
+            public function getSettings(): array
+            {
                 return [];
             }
         };
 
         $postType2 = new class implements PostType {
-            public static function registrar(): string {
+            public static function registrar(): string
+            {
                 return 'PostTypeRegistrarClass2';
             }
-            public function getType(): string {
+
+            public function getType(): string
+            {
                 return 'type2';
             }
-            public function getSettings(): array {
+
+            public function getSettings(): array
+            {
                 return [];
             }
         };
@@ -46,8 +58,8 @@ class DefaultPostTypesRegistrarTest extends WP_UnitTestCase {
                    ->with($postType1);
 
         $registrar2->expects($this->once())
-                   ->method('register')
-                   ->with($postType2);
+                    ->method('register')
+                    ->with($postType2);
 
         $container = $this->createMock(ContainerInterface::class);
         $container->method('get')->willReturnMap([
@@ -63,4 +75,3 @@ class DefaultPostTypesRegistrarTest extends WP_UnitTestCase {
         $defaultPostTypesRegistrar->register();
     }
 }
-

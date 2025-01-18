@@ -1,6 +1,6 @@
 <?php
 
-declare( strict_types=1 );
+declare(strict_types=1);
 
 namespace OnePix\WordPress\CustomPostType;
 
@@ -30,7 +30,7 @@ return static function (ContainerConfigurator $di, ContainerBuilder $builder): v
 				'$postTypes' => tagged_iterator(PostType::class, exclude: [
 					DefaultPostType::class
 				]),
-				'$registrars' => tagged_locator( PostTypeRegistrar::class )
+				'$registrars' => tagged_locator(PostTypeRegistrar::class)
  			])
 			->public();
 };

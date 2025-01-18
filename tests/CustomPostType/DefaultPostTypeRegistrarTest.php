@@ -34,10 +34,10 @@ class DefaultPostTypeRegistrarTest extends WP_UnitTestCase
 
         $this->assertSame($mockSettings['public'], $wpPostType->public);
 
-        global $_wp_post_type_features;
+        global $_wp_post_type_features; //phpcs:ignore Squiz.NamingConventions.ValidVariableName.NotCamelCaps
 
-        $this->assertSame($mockSettings['supports'], array_keys($_wp_post_type_features[$mockType]));
+        $this->assertSame($mockSettings['supports'], array_keys($_wp_post_type_features[$mockType])); //phpcs:ignore Squiz.NamingConventions.ValidVariableName.NotCamelCaps
 
-        unregister_post_type( $mockType );
+        unregister_post_type($mockType);
     }
 }
