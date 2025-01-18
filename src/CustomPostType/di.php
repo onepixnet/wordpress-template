@@ -2,11 +2,11 @@
 
 declare( strict_types=1 );
 
-namespace Onepix\Wordpress\CustomPostType;
+namespace OnePix\WordPress\CustomPostType;
 
-use Onepix\Wordpress\CustomPostType\Contracts\PostType;
-use Onepix\Wordpress\CustomPostType\Contracts\PostTypeRegistrar;
-use Onepix\Wordpress\CustomPostType\Contracts\PostTypesRegistrar;
+use OnePix\WordPress\CustomPostType\Contracts\PostType;
+use OnePix\WordPress\CustomPostType\Contracts\PostTypeRegistrar;
+use OnePix\WordPress\CustomPostType\Contracts\PostTypesRegistrar;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 
@@ -25,7 +25,6 @@ return static function (ContainerConfigurator $di, ContainerBuilder $builder): v
 	        ->autowire()
 			->autoconfigure()
 	    ->set(PostTypeRegistrar::class, DefaultPostTypeRegistrar::class)
-	    ->set(PostTypesRegistrar::class, DefaultPostType::class)
 	    ->set(DefaultPostTypesRegistrar::class)
 			->args([
 				'$postTypes' => tagged_iterator(PostType::class, exclude: [

@@ -2,7 +2,7 @@
 
 declare( strict_types=1 );
 
-namespace Onepix\Wordpress\CustomPostType;
+namespace OnePix\WordPress\CustomPostType;
 
 use WP_UnitTestCase;
 

@@ -2,7 +2,7 @@
 
 declare( strict_types=1 );
 
-namespace Onepix\Wordpress\CustomPostType\Contracts;
+namespace OnePix\WordPress\CustomPostType\Contracts;
 
 interface PostType {
 	/**

@@ -2,7 +2,7 @@
 
 declare( strict_types=1 );
 
-use Onepix\Wordpress\CustomPostType\DefaultPostTypesRegistrar;
+use OnePix\WordPress\CustomPostType\DefaultPostTypesRegistrar;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\PhpFileLoader;

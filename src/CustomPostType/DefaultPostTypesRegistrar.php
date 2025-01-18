@@ -2,10 +2,10 @@
 
 declare( strict_types=1 );
 
-namespace Onepix\Wordpress\CustomPostType;
+namespace OnePix\WordPress\CustomPostType;
 
-use Onepix\Wordpress\CustomPostType\Contracts\PostTypesRegistrar;
-use Onepix\Wordpress\CustomPostType\Contracts\PostType;
+use OnePix\WordPress\CustomPostType\Contracts\PostTypesRegistrar;
+use OnePix\WordPress\CustomPostType\Contracts\PostType;
 use Psr\Container\ContainerInterface;
 
 class DefaultPostTypesRegistrar implements PostTypesRegistrar {

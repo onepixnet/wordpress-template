@@ -2,7 +2,7 @@
 
 declare( strict_types=1 );
 
-namespace Onepix\Wordpress\CustomPostType\Contracts;
+namespace OnePix\WordPress\CustomPostType\Contracts;
 
 interface PostTypeRegistrar {
 	public function register(PostType $post_type): void;

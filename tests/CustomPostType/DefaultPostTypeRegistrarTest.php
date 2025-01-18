@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Onepix\Wordpress\CustomPostType;
+namespace OnePix\WordPress\CustomPostType;
 
-use Onepix\Wordpress\CustomPostType\Contracts\PostType;
+use OnePix\WordPress\CustomPostType\Contracts\PostType;
 use WP_UnitTestCase;
 
 /**
