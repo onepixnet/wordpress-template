@@ -12,6 +12,9 @@ interface PostType {
 	 */
 	public static function registrar():string;
 
+	/**
+	 * @return non-empty-string
+	 */
 	public function getType(): string;
 
 	public function getSettings(): array;
