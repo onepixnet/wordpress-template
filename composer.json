@@ -33,7 +33,10 @@
     "wp-coding-standards/wpcs": "^3.1",
     "rector/rector": "^2.0",
     "vimeo/psalm": "^5",
-    "humanmade/psalm-plugin-wordpress": "^3.1"
+    "humanmade/psalm-plugin-wordpress": "^3.1",
+    "onepix/wordpress-stubs": "^6.7",
+    "php-stubs/wordpress-tests-stubs": "^6.7",
+    "onepix/psr11-container-interface-generic": "^1.0"
   },
   "config": {
     "allow-plugins": {
