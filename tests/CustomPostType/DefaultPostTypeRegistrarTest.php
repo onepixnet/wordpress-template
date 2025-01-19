@@ -12,7 +12,7 @@ use WP_UnitTestCase;
  */
 class DefaultPostTypeRegistrarTest extends WP_UnitTestCase
 {
-    public function testRegister()
+    public function testRegister(): void
     {
         $mockPostType = $this->createMock(PostType::class);
 

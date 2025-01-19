@@ -13,12 +13,10 @@ abstract class DefaultPostTypeTestCase extends WP_UnitTestCase
 {
     /**
      * Returns an instance of the post type being tested.
-     *
-     * @return DefaultPostType
      */
     abstract protected function getPostType(): DefaultPostType;
 
-    public function testGetSettings()
+    public function testGetSettings(): void
     {
         $postType = $this->getPostType();
         $type     = $postType->getType();

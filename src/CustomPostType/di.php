@@ -6,7 +6,6 @@ namespace OnePix\WordPress\CustomPostType;
 
 use OnePix\WordPress\CustomPostType\Contracts\PostType;
 use OnePix\WordPress\CustomPostType\Contracts\PostTypeRegistrar;
-use OnePix\WordPress\CustomPostType\Contracts\PostTypesRegistrar;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 

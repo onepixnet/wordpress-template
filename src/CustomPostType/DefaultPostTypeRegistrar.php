@@ -11,6 +11,6 @@ final class DefaultPostTypeRegistrar implements PostTypeRegistrar
 {
     public function register(PostType $postType): void
     {
-        register_postType($postType->getType(), $postType->getSettings());
+        register_post_type($postType->getType(), $postType->getSettings());
     }
 }
