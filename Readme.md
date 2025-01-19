@@ -35,24 +35,23 @@ The goal of this project is to create a single base for convenient WordPress dev
     - [ ] With PHPUnit
     - [ ] With PHPUnit and WordPress tests library
 - [ ] DI container
-    - [ ] About pattern
-    - [ ] How to use symfony container
+  - [ ] About pattern
+  - [ ] How to use symfony container
 
 ## Add components
-
-- [x] CPT registration
-- [ ] Templates
-- [ ] Simple php
-- [ ] Blade
-- [ ] Posts paginator
-- [ ] Posts filter
-- [ ] Logging
-- [ ] Assets manager
-- [ ] Admin page
-- [ ] Meta boxes
-- [ ] Post model
-- [ ] Short codes registrar
-- [ ] Gutenberg block registrar
-- [ ] With acf
-- [ ] With react
-- [ ] Rest api manager
+ - [x] CPT registration
+ - [ ] Posts paginator
+ - [ ] Posts filter
+ - [ ] Logging
+ - [ ] Templates
+   - [ ] Simple php
+   - [ ] Blade
+ - [ ] Assets manager
+ - [ ] Admin page
+ - [ ] Meta boxes
+ - [ ] Post model
+ - [ ] Short codes registrar
+ - [ ] Gutenberg block registrar
+   - [ ] With acf
+   - [ ] With react
+ - [ ] Rest api manager
