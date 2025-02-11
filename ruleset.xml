@@ -49,6 +49,12 @@
         <exclude name="WordPress.Security.ValidatedSanitizedInput.InputNotValidated"/>
         <exclude name="WordPress.Security.ValidatedSanitizedInput.InputNotSanitized"/>
 
+        <!--    We don't want use wp filesystem functions    -->
+        <exclude name="WordPress.WP.AlternativeFunctions.file_system_operations_rmdir"/>
+        <exclude name="WordPress.WP.AlternativeFunctions.file_system_operations_mkdir"/>
+        <exclude name="WordPress.WP.AlternativeFunctions.file_system_operations_file_put_contents"/>
+        <exclude name="WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents"/>
+
         <!--   Disable WordPress rules that don't comply with PSR-12     -->
         <exclude name="Generic.Functions"/>
         <exclude name="Squiz.Functions"/>
