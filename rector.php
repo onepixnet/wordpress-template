@@ -6,6 +6,7 @@ use Rector\CodingStyle\Rector\Catch_\CatchExceptionNameMatchingTypeRector;
 use Rector\CodingStyle\Rector\Closure\StaticClosureRector;
 use Rector\CodingStyle\Rector\Encapsed\EncapsedStringsToSprintfRector;
 use Rector\Config\RectorConfig;
+use Rector\Set\ValueObject\LevelSetList;
 use Rector\Set\ValueObject\SetList;
 use Rector\Strict\Rector\Ternary\DisallowedShortTernaryRuleFixerRector;
 use Rector\TypeDeclaration\Rector\StmtsAwareInterface\DeclareStrictTypesRector;
@@ -18,7 +19,9 @@ return RectorConfig::configure()
 		__DIR__ . '/src',
 		__DIR__ . '/tests',
 	])
-	//->withPhpVersion(PhpVersion::PHP_83) //If not defined in composer.json
+	->withSets([
+		LevelSetList::UP_TO_PHP_81,
+	])
 	->withTypeCoverageLevel(49) //to 49
 	->withDeadCodeLevel(45) //to 45
 	->withCodeQualityLevel(74) // to 74
