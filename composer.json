@@ -1,7 +1,7 @@
 {
   "name": "onepix/wordpress-template",
   "description": "Pack of features for WordPress development",
-  "type": "library",
+  "type": "project",
   "license": "MIT",
   "autoload": {
     "psr-4": {
