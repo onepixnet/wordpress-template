@@ -10,7 +10,7 @@
   },
   "autoload-dev": {
     "psr-4": {
-      "OnePix\\WordPress\\": "tests"
+      "OnePix\\WordPress\\": "tests/"
     }
   },
   "authors": [
