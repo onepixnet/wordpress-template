@@ -23,7 +23,7 @@ services:
       - .:/var/www/html
 
   db:
-    image: mysql:8.0
+    image: mariadb:11
     container_name: "${DOCKER_PROJECT_NAME}-db"
     restart: no
     environment:
