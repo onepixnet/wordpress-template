@@ -1,6 +1,6 @@
 <?php
 
-declare( strict_types=1 );
+declare(strict_types=1);
 
 namespace OnePix\WordPress;
 
@@ -20,8 +20,8 @@ class ExamplePostCreator {
 			true
 		);
 
-		if ( $result instanceof \WP_Error ) {
-			throw new Exception( 'Unable to create post: ' . $result->get_error_message() );
+		if ($result instanceof \WP_Error) {
+			throw new Exception('Unable to create post: ' . $result->get_error_message());
 		}
 
 		return $result;
