@@ -62,6 +62,10 @@
       "@phpcs:full",
       "@rector:dry",
       "@psalm"
-    ]
+    ],
+    "make-pot": "./vendor/bin/wp i18n make-pot . --include=templates/*,src/* --slug=wordpress-template",
+    "update-po": "./vendor/bin/wp i18n update-po ./languages/wordpress-template.pot",
+    "make-mo": "./vendor/bin/wp i18n make-mo ./languages",
+    "make-mo-json": "./vendor/bin/wp i18n make-json ./languages --no-purge --pretty-print"
   }
 }
