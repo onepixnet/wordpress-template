@@ -36,7 +36,8 @@
     "humanmade/psalm-plugin-wordpress": "^3.1",
     "onepix/wordpress-stubs": "^6.7",
     "php-stubs/wordpress-tests-stubs": "^6.7",
-    "onepix/psr11-container-interface-generic": "^1.0"
+    "onepix/psr11-container-interface-generic": "^1.0",
+    "wp-cli/wp-cli-bundle": "^2.11"
   },
   "config": {
     "allow-plugins": {
