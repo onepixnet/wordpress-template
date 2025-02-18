@@ -2,8 +2,32 @@
 
 declare( strict_types=1 );
 
-use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
+namespace OnePix\WordPress;
 
-return static function (ContainerConfigurator $di): void {
-	$di->import(__DIR__ . '/src/**/di.php');
-};
+use Illuminate\Container\Container;
+
+/**
+ * @see https://laravel.com/docs/11.x/container
+ */
+function di(): Container {
+    static $container = null;
+
+    if ( $container === null ) {
+        $container = new Container();
+
+        /**
+         * Bind classes with container.
+         *
+         * @see Container::bind()
+         * @see Container::singleton()
+         *
+         * $container->bind(SomeInterface::class, SomeClassImplementingInterface::class);
+         */
+
+        /** Bind default components */
+        /** @var Container $container */
+        $container = (require __DIR__ . '/vendor/onepix/wordpress-components/di.php')($container);
+    }
+
+    return $container;
+}
