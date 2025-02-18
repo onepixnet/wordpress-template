@@ -18,6 +18,7 @@ return RectorConfig::configure()
 	->withPaths([
 		__DIR__ . '/src',
 		__DIR__ . '/tests',
+		__DIR__ . '/di.php',
 	])
 	->withSets([
 		LevelSetList::UP_TO_PHP_81,

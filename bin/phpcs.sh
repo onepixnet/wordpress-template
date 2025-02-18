@@ -1,7 +1,7 @@
 #!/bin/bash
 
 standard='--standard=./ruleset.xml'
-path='./src ./tests'
+path='./src ./tests ./di.php'
 extra='--cache -p -s --colors '
 
 #extra+=' --report=diff -vvv' #uncomment for debug
