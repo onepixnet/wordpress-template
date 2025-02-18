@@ -14,21 +14,18 @@ final class App
     {
     }
 
-    public function run() {
-        $this->actionsRegistrar->add( 'plugins_loaded', $this->pluginsLoaded(...) );
-        $this->actionsRegistrar->add( 'init', $this->init(...) );
-        $this->actionsRegistrar->add( 'template_redirect', $this->templateRedirect(...) );
+    public function run(): void {
+        $this->actionsRegistrar->add('plugins_loaded', $this->pluginsLoaded(...));
+        $this->actionsRegistrar->add('init', $this->init(...));
+        $this->actionsRegistrar->add('template_redirect', $this->templateRedirect(...));
     }
 
     private function pluginsLoaded(): void {
-
     }
 
     private function init(): void {
-
     }
 
     private function templateRedirect(): void {
-
     }
 }
