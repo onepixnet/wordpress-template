@@ -15,6 +15,8 @@ function di(): Container {
     if ( $container === null ) {
         $container = new Container();
 
+        $container->bind(App::class);
+
         /**
          * Bind classes with container.
          *
