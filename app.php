@@ -1,4 +1,11 @@
 <?php
+/**
+ * Plugin name: OnePix Template for WordPress
+ * Description: Modern template for WordPress plugin development
+ * Requires Plugins:
+ * Domain Path: /languages
+ * Version: 0.1.0
+ */
 
 declare(strict_types=1);
 
