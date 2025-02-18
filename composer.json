@@ -21,23 +21,24 @@
       "name": "Daniel Dubchenko"
     }
   ],
-  "minimum-stability": "dev",
+  "minimum-stability": "stable",
   "require": {
     "php": ">=8.1",
-    "illuminate/container": "^11.42",
-    "onepix/wordpress-components": "dev-main"
+    "onepix/wordpress-components": "^0.1.1",
+    "illuminate/container": "^10.48.28",
+    "illuminate/config": "^10.48.28"
   },
   "require-dev": {
-    "phpunit/phpunit": "^9",
-    "yoast/phpunit-polyfills": "^3",
-    "squizlabs/php_codesniffer": "^3.11",
+    "phpunit/phpunit": "^9.6.22",
+    "yoast/phpunit-polyfills": "^3.1.2",
+    "squizlabs/php_codesniffer": "^3.11.3",
     "dealerdirect/phpcodesniffer-composer-installer": "^1.0",
     "wp-coding-standards/wpcs": "^3.1",
-    "rector/rector": "^2.0",
-    "vimeo/psalm": "^5",
-    "humanmade/psalm-plugin-wordpress": "^3.1",
-    "onepix/wordpress-stubs": "^6.7",
-    "php-stubs/wordpress-tests-stubs": "^6.7",
+    "rector/rector": "^2.0.9",
+    "vimeo/psalm": "^5.26.1",
+    "humanmade/psalm-plugin-wordpress": "^3.1.2",
+    "onepix/wordpress-stubs": "^6.7.1",
+    "php-stubs/wordpress-tests-stubs": "^6.7.2",
     "onepix/psr11-container-interface-generic": "^1.0",
     "wp-cli/wp-cli-bundle": "^2.11"
   },
