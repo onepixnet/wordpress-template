@@ -12,7 +12,7 @@ use RuntimeException;
  * @see https://laravel.com/docs/11.x/container
  */
 function di(): Container {
-    static $container = null;
+    static $container        = null;
     static $configRepository = null;
 
     if ($configRepository === null) {
@@ -61,17 +61,17 @@ function di(): Container {
 /**
  * Use this function only in config files!
  */
-function env(string $key, mixed $default = null): string
+function env(string $key, string $default = null): string
 {
     static $env = null;
 
-    if($env === null) {
-        if(!file_exists(__DIR__ . '/.env')) {
+    if ($env === null) {
+        if (!file_exists(__DIR__ . '/.env')) {
             throw new RuntimeException('.env file not found! Copy .env.example to .env and configure your app before booting');
         }
 
         $env = parse_ini_file(__DIR__ . '/.env');
     }
 
-    return key_exists( $key, $env ) ? $env[$key] : $default;
+    return array_key_exists($key, $env) ? $env[$key] : $default;
 }
