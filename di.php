@@ -12,33 +12,6 @@ use Illuminate\Config\Repository;
  */
 function di(): Container {
     static $container = null;
-
-    if ($container === null) {
-        $container = new Container();
-
-        $container->bind(App::class);
-
-        /**
-         * Bind classes with container.
-         *
-         * @see Container::bind()
-         * @see Container::singleton()
-         *
-         * $container->bind(SomeInterface::class, SomeClassImplementingInterface::class);
-         */
-
-        /** Bind default components */
-        $container = (require __DIR__ . '/vendor/onepix/wordpress-components/di.php')($container);
-    }
-
-    return $container;
-}
-
-/**
- * Use this function only in the di function for application configuration!
- */
-function env(string $key, mixed $default = null): mixed
-{
     static $configRepository = null;
 
     if ($configRepository === null) {
@@ -52,5 +25,34 @@ function env(string $key, mixed $default = null): mixed
         $configRepository = new Repository($configData);
     }
 
-    return $configRepository->get($key, $default);
+    if ($container === null) {
+        $container = new Container();
+
+        $container->singleton('config', fn() => $configRepository);
+        $container->singleton(App::class);
+
+        /**
+         * Bind classes with container.
+         *
+         * @see Container::bind()
+         * @see Container::singleton()
+         *
+         * $container->bind(SomeInterface::class, SomeClassImplementingInterface::class);
+         */
+
+        /** Bind default components */
+        /** @var Container $container */
+        $container = (require __DIR__ . '/vendor/onepix/wordpress-components/di.php')($container);
+
+        /** Primitives from config for default components */
+        $container->when(\OnePix\WordPressComponents\RewriteRulesManager::class)->needs('$optionPrefix')->giveConfig('app.id');
+
+        $container->when(\OnePix\WordPressComponents\ScriptsRegistrar::class)->needs('$translationDomain')->giveConfig('app.id');
+        $container->when(\OnePix\WordPressComponents\ScriptsRegistrar::class)->needs('$translationsPath')->giveConfig('app.translationsPath');
+
+        $container->when(\OnePix\WordPressComponents\TemplatesManager::class)->needs('$templatesPath')->giveConfig('app.templatesPath');
+        $container->when(\OnePix\WordPressComponents\TemplatesManager::class)->needs('$isDev')->giveConfig('app.isDev');
+    }
+
+    return $container;
 }
