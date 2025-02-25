@@ -41,11 +41,11 @@ function di(): Container {
          * $container->bind(SomeInterface::class, SomeClassImplementingInterface::class);
          */
 
-        /** Bind default components */
+        /** Bind WordPress components */
         /** @var Container $container */
         $container = (require __DIR__ . '/vendor/onepix/wordpress-components/di.php')($container);
 
-        /** Primitives from config for default components */
+        /** Primitives from config for WordPress components */
         $container->when(\OnePix\WordPressComponents\RewriteRulesManager::class)->needs('$optionPrefix')->giveConfig('app.id');
 
         $container->when(\OnePix\WordPressComponents\ScriptsRegistrar::class)->needs('$translationDomain')->giveConfig('app.id');
