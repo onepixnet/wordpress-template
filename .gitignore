@@ -5,7 +5,6 @@
 /vendor
 /var
 
-#Uncomment in a project
-/composer.lock
+/build
 
 
