@@ -7,8 +7,6 @@ namespace OnePix\WordPress;
 use OnePix\WordPressContracts\ActionsRegistrar;
 use OnePix\WordPressContracts\PluginLifecycleHandler;
 
-use function OnePix\YachtCruise\di;
-
 final class App
 {
     public function __construct(
@@ -34,8 +32,8 @@ final class App
 
     public function run(): void
     {
-        $this->actionsRegistrar->add('pluginsLoaded', function (): void {
-            di()->call($this->init(...));
+        $this->actionsRegistrar->add('plugins_loaded', function (): void {
+            di()->call($this->pluginsLoaded(...));
         });
 
         $this->actionsRegistrar->add('init', function (): void {
@@ -60,3 +58,4 @@ final class App
 
     }
 }
+
