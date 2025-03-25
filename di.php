@@ -32,6 +32,20 @@ function di(): Container {
         $container->singleton('config', fn() => $configRepository);
         $container->singleton(App::class);
 
+        /** Bind WordPress components */
+        (require __DIR__ . '/vendor/onepix/wordpress-components/di.php')($container);
+
+        /** Primitives from config for WordPress components */
+        $container->when(\OnePix\WordPressComponents\RewriteRulesManager::class)->needs('$optionPrefix')->giveConfig('app.id');
+
+        $container->when(\OnePix\WordPressComponents\PluginLifecycleHandler::class)->needs('$pluginFile')->giveConfig('app.pluginFile');
+
+        $container->when(\OnePix\WordPressComponents\ScriptsRegistrar::class)->needs('$translationDomain')->giveConfig('app.id');
+        $container->when(\OnePix\WordPressComponents\ScriptsRegistrar::class)->needs('$translationsPath')->giveConfig('app.translationsPath');
+
+        $container->when(\OnePix\WordPressComponents\TemplatesManager::class)->needs('$templatesPath')->giveConfig('app.templatesPath');
+        $container->when(\OnePix\WordPressComponents\TemplatesManager::class)->needs('$isDev')->giveConfig('app.isDev');
+
         /**
          * Bind classes with container.
          *
@@ -41,18 +55,17 @@ function di(): Container {
          * $container->bind(SomeInterface::class, SomeClassImplementingInterface::class);
          */
 
-        /** Bind WordPress components */
-        /** @var Container $container */
-        $container = (require __DIR__ . '/vendor/onepix/wordpress-components/di.php')($container);
+        /**
+         * You can also use separate di.php files to logically separate the configuration.
+         * An example of such a connection is above from wordpress-components
+         */
 
-        /** Primitives from config for WordPress components */
-        $container->when(\OnePix\WordPressComponents\RewriteRulesManager::class)->needs('$optionPrefix')->giveConfig('app.id');
-
-        $container->when(\OnePix\WordPressComponents\ScriptsRegistrar::class)->needs('$translationDomain')->giveConfig('app.id');
-        $container->when(\OnePix\WordPressComponents\ScriptsRegistrar::class)->needs('$translationsPath')->giveConfig('app.translationsPath');
-
-        $container->when(\OnePix\WordPressComponents\TemplatesManager::class)->needs('$templatesPath')->giveConfig('app.templatesPath');
-        $container->when(\OnePix\WordPressComponents\TemplatesManager::class)->needs('$isDev')->giveConfig('app.isDev');
+        array_map(
+            fn($p) => (require $p)($container),
+            [
+                //__DIR__ . '/src/component/di.php',
+            ]
+        );
     }
 
     return $container;

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0a569a0f91f938daf1de677d9c8417ef",
+    "content-hash": "dc812f318127802c484804d614e58452",
     "packages": [
         {
             "name": "illuminate/collections",
@@ -302,16 +302,16 @@
         },
         {
             "name": "onepix/wordpress-components",
-            "version": "0.1.5",
+            "version": "0.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/onepixnet/wordpress-components.git",
-                "reference": "26506fa44024d5368d6c6e1e14ceb327899975b0"
+                "reference": "2f27f31070d5d672305493a2bbbeae74c83e5d9f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/onepixnet/wordpress-components/zipball/26506fa44024d5368d6c6e1e14ceb327899975b0",
-                "reference": "26506fa44024d5368d6c6e1e14ceb327899975b0",
+                "url": "https://api.github.com/repos/onepixnet/wordpress-components/zipball/2f27f31070d5d672305493a2bbbeae74c83e5d9f",
+                "reference": "2f27f31070d5d672305493a2bbbeae74c83e5d9f",
                 "shasum": ""
             },
             "require": {
@@ -352,9 +352,9 @@
             "description": "Implementation of WordPress contracts, PSR contracts and more useful things",
             "support": {
                 "issues": "https://github.com/onepixnet/wordpress-components/issues",
-                "source": "https://github.com/onepixnet/wordpress-components/tree/0.1.5"
+                "source": "https://github.com/onepixnet/wordpress-components/tree/0.2.0"
             },
-            "time": "2025-02-19T16:04:36+00:00"
+            "time": "2025-03-25T12:14:37+00:00"
         },
         {
             "name": "onepix/wordpress-contracts",
