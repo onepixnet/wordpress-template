@@ -5,27 +5,58 @@ declare(strict_types=1);
 namespace OnePix\WordPress;
 
 use OnePix\WordPressContracts\ActionsRegistrar;
+use OnePix\WordPressContracts\PluginLifecycleHandler;
+
+use function OnePix\YachtCruise\di;
 
 final class App
 {
     public function __construct(
-        private readonly ActionsRegistrar $actionsRegistrar
-    )
+        private readonly ActionsRegistrar $actionsRegistrar,
+        private readonly PluginLifecycleHandler $pluginLifecycleHandler,
+    ) {
+    }
+
+    public function initPluginLifecycle(): void
+    {
+        $this->pluginLifecycleHandler->registerActivationHook(function () {
+
+        });
+
+        $this->pluginLifecycleHandler->registerDeactivationHook(function () {
+
+        });
+
+        $this->pluginLifecycleHandler->registerUninstallHook(function () {
+
+        });
+    }
+
+    public function run(): void
+    {
+        $this->actionsRegistrar->add('pluginsLoaded', function (): void {
+            di()->call($this->init(...));
+        });
+
+        $this->actionsRegistrar->add('init', function (): void {
+            di()->call($this->init(...));
+        });
+
+        $this->actionsRegistrar->add('adminMenu', function (): void {
+            di()->call($this->adminMenu(...));
+        });
+    }
+
+    private function pluginsLoaded(/* DI here */): void
     {
     }
 
-    public function run(): void {
-        $this->actionsRegistrar->add('plugins_loaded', $this->pluginsLoaded(...));
-        $this->actionsRegistrar->add('init', $this->init(...));
-        $this->actionsRegistrar->add('template_redirect', $this->templateRedirect(...));
+    private function init(/* DI here */): void
+    {
     }
 
-    private function pluginsLoaded(): void {
-    }
+    private function adminMenu(/* DI here */): void
+    {
 
-    private function init(): void {
-    }
-
-    private function templateRedirect(): void {
     }
 }
