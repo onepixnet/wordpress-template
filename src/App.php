@@ -40,7 +40,7 @@ final class App
             di()->call($this->init(...));
         });
 
-        $this->actionsRegistrar->add('adminMenu', function (): void {
+        $this->actionsRegistrar->add('admin_menu', function (): void {
             di()->call($this->adminMenu(...));
         });
     }
